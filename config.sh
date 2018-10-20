@@ -28,7 +28,7 @@ AUTOMOUNT=true
 PROPFILE=false
 
 # Set to true if you need post-fs-data script
-POSTFSDATA=false
+POSTFSDATA=true
 
 # Set to true if you need late_start service script
 LATESTARTSERVICE=false
@@ -41,7 +41,7 @@ LATESTARTSERVICE=false
 
 print_modname() {
   ui_print "*******************************"
-  ui_print "     Magisk Module Template    "
+  ui_print "        HTC U11+ Debloat       "
   ui_print "*******************************"
 }
 
@@ -63,6 +63,12 @@ REPLACE="
 # Construct your own list here, it will override the example above
 # !DO NOT! remove this if you don't need to replace anything, leave it empty as it is now
 REPLACE="
+/system/priv-app/HTCCN_SogouIME
+/system/priv-app/HTCCN_Internet
+/system/priv-app/TouchPal_SmartSearch
+/system/priv-app/AMapNetworkLocation
+/system/priv-app/HTCMarket
+/system/app/GooglePinyinIME
 "
 
 ##########################################################################################
@@ -85,6 +91,14 @@ set_permissions() {
 
   # The following is default permissions, DO NOT remove
   set_perm_recursive  $MODPATH  0  0  0755  0644
+
+  set_perm_recursive  "$MODPATH/system/priv-app/HTCCN_SogouIME"               0 0 0755 0644 u:object_r:system_file:s0
+  set_perm_recursive  "$MODPATH/system/priv-app/HTCCN_Internet"               0 0 0755 0644 u:object_r:system_file:s0
+  set_perm_recursive  "$MODPATH/system/priv-app/TouchPal_SmartSearch"         0 0 0755 0644 u:object_r:system_file:s0
+  set_perm_recursive  "$MODPATH/system/priv-app/AMapNetworkLocation"          0 0 0755 0644 u:object_r:system_file:s0
+  set_perm_recursive  "$MODPATH/system/priv-app/HTCMarket"                    0 0 0755 0644 u:object_r:system_file:s0
+
+  set_perm_recursive  "$MODPATH/system/app/GooglePinyinIME"                   0 0 0755 0644 u:object_r:system_file:s0
 }
 
 ##########################################################################################
@@ -96,4 +110,3 @@ set_permissions() {
 # update-binary. Refrain from adding code directly into update-binary, as it will make it
 # difficult for you to migrate your modules to newer template versions.
 # Make update-binary as clean as possible, try to only do function calls in it.
-

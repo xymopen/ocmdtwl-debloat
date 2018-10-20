@@ -11,6 +11,12 @@ INSTALLER=$TMPDIR/install
 # Always mount under tmp
 MOUNTPATH=$TMPDIR/magisk_img
 
+# Device model
+DEVICE="$(getprop 'ro.product.device')"
+PRODUCT="$(getprop 'ro.build.product')"
+CID="$(getprop ro.cid)"
+[ -z "$CID" ] && CID="$(getprop ro.boot.cid)"
+
 # Default permissions
 umask 022
 
@@ -20,6 +26,17 @@ mkdir -p $INSTALLER
 
 # echo before loading util_functions
 ui_print() { echo "$1"; }
+
+require_ocm_dtwl() {
+  ui_print "*******************************"
+  ui_print "         *** E3004 ***         "
+  ui_print "This mod is for device:        "
+  ui_print " htc_ocmdtwl, cid: HTCCN701;   "
+  ui_print "this is device:                "
+  ui_print "${DEVICE}, cid: ${CID}.        "
+  ui_print "*******************************"
+  exit 1
+}
 
 require_new_magisk() {
   ui_print "*******************************"
@@ -75,6 +92,9 @@ unzip -o "$ZIP" module.prop config.sh 'common/*' -d $INSTALLER >&2
 [ ! -f $INSTALLER/config.sh ] && abort "! Unable to extract zip file!"
 # Load configurations
 . $INSTALLER/config.sh
+
+# Check device model
+[ \( "$DEVICE" == "htc_ocmdtwl" -o "$PRODUCT" == "htc_ocmdtwl" \) -a \( "$CID" == "HTCCN701" \) ] || require_ocm_dtwl
 
 # Check the installed magisk version
 MIN_VER=`grep_prop minMagisk $INSTALLER/module.prop`
@@ -135,6 +155,9 @@ $POSTFSDATA && cp -af $INSTALLER/common/post-fs-data.sh $MODPATH/post-fs-data.sh
 
 # service mode scripts
 $LATESTARTSERVICE && cp -af $INSTALLER/common/service.sh $MODPATH/service.sh
+
+# `/preload` mount point
+mkdir -p "$MODPATH/preload"
 
 ui_print "- Setting permissions"
 set_permissions
