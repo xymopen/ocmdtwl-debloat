@@ -63,6 +63,7 @@ REPLACE="
 # Construct your own list here, it will override the example above
 # !DO NOT! remove this if you don't need to replace anything, leave it empty as it is now
 REPLACE="
+/system/app/News_Republic
 /system/priv-app/HTCCN_SogouIME
 /system/priv-app/HTCCN_Internet
 /system/priv-app/TouchPal_SmartSearch
