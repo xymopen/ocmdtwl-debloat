@@ -1,6 +1,6 @@
 # HTC U11+ Debloat
 
-This module removes pre-installed third-party apps found on HTC U11+ HTCCN variant according to [预置应用公示声明](https://www.htc.com/managed-assets/shared/desktop/smartphones/cn/miit/2q4d200.pdf "HTC U11+ （HTC 2Q4D200）预置应用软件信息公示").
+This module removes following pre-installed third-party apps found on HTC U11+ HTCCN variant according to [预置应用公示声明](https://www.htc.com/managed-assets/shared/desktop/smartphones/cn/miit/2q4d200.pdf "HTC U11+ （HTC 2Q4D200）预置应用软件信息公示").
 
 | Name                    | Package                                     |
 |-------------------------|---------------------------------------------|
@@ -24,7 +24,8 @@ This module removes pre-installed third-party apps found on HTC U11+ HTCCN varia
 | 搜狗拼音输入法HTC定制版 | com.sohu.inputmethod.sogou.htc              |
 | 浏览器                  | com.android.browser                         |
 | SmartSearch             | com.emoji.keyboard.touchpal.htc.smartsearch |
-| 网络位置                | com.htc.china.location.service              |
 | 应用商店                | com.htcmarket                               |
+
+网络位置(com.htc.china.location.service) is preserved for localization performance.
 
 This module adds Google Pinyin IME since no other IME is present.
