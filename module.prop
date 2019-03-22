@@ -1,7 +1,7 @@
 id=ocmdtwl-debloat
 name=HTC U11+ Debloat
-version=v2
-versionCode=3
+version=v2.0.1
+versionCode=4
 author=xymopen
 description=Remove pre-installed third-party apps on HTC U11+ DTWL
 minMagisk=17000

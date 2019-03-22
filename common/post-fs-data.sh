@@ -58,3 +58,5 @@ for target in $PRESERVE_FILES; do
 		mount -o bind "$MODDIR$target" "$target"
 	fi
 done
+
+umount -l "$MODDIR/preload"
